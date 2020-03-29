@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter&display=swap');
+
+.navigation,
+.pages,
+.authentication,
+#nav-logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#nav-logo {
+	font-weight: bolder;
+}
+
+.navigation {
+	padding-top: 0.5em;
+	background-color: white;
+	font-family: 'Bitter', serif;
+}
+
+.pages li {
+	list-style: none;
+	padding: 1em;
+}
+
+.authentication {
+	padding: 1em;
+}
+
+.authentication div {
+	padding: 0.5em;
+}

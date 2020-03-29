@@ -1,36 +1,46 @@
 import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
-import { NavLink  } from 'react-router-dom';
-import { useAuth0 } from "../react-auth0-spa";
+import { NavLink } from 'react-router-dom';
+import { useAuth0 } from '../react-auth0-spa';
 import logo from '../assets/logo.svg';
+
+import './styles.css';
+
 export const Header = () => {
-    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-    return (
-        <Navbar variant="light" bg="white" expand="lg">
-            <Container>
-                <Navbar.Brand href="#home">
-                    <img
-                        src={logo}
-                        width="200"
-                        height="50"
-                        className="d-inline-block align-top"
-                        alt="Fight Pandemics logo"
-                    />
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse>
-                    <Nav className="mr-auto">
-                        <Nav.Item><NavLink exact to="/">Home</NavLink></Nav.Item>
-                        <Nav.Item><NavLink to="/about">About us</NavLink></Nav.Item>
-                        <Nav.Item><NavLink to="/medical">Medical Info</NavLink></Nav.Item>
-                    </Nav>
-                </Navbar.Collapse>
-                <Nav>
-                    {!isAuthenticated && (<Nav.Link onClick={() => loginWithRedirect({})}>Login</Nav.Link>)}
-                    {!isAuthenticated && (<Nav.Link onClick={() => loginWithRedirect({})}>Signup</Nav.Link>)}
-                    {isAuthenticated && <Nav.Link onClick={() => logout()}>Log out</Nav.Link>}
-                </Nav>
-            </Container>
-        </Navbar>
-    );
-}
+	const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+	return (
+		<div className='navigation'>
+			<div id='nav-logo' href='#home'>
+				<img
+					src={logo}
+					width='auto'
+					height='50'
+					className='d-inline-block align-top'
+					alt='Fight Pandemics logo'
+				/>
+				<h4>Fight Pandemics</h4>
+			</div>
+			<div className='pages'>
+				<li>
+					<NavLink exact to='/'>
+						Home
+					</NavLink>
+				</li>
+				<li>
+					<NavLink to='/about'>About us</NavLink>
+				</li>
+				<li>
+					<NavLink to='/medical'>Medical Info</NavLink>
+				</li>
+			</div>
+			<div className='authentication'>
+				{!isAuthenticated && (
+					<div onClick={() => loginWithRedirect({})}>Login</div>
+				)}
+				{!isAuthenticated && (
+					<div onClick={() => loginWithRedirect({})}>Signup</div>
+				)}
+				{isAuthenticated && <div onClick={() => logout()}>Log out</div>}
+			</div>
+		</div>
+	);
+};
